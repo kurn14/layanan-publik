@@ -23,7 +23,7 @@ class Payment extends Model
         'verified_by',
         'paid_at',
         'notes',
-        'metadata',
+
     ];
 
     protected function casts(): array
@@ -33,7 +33,7 @@ class Payment extends Model
             'payment_method' => PaymentMethod::class,
             'status' => PaymentStatus::class,
             'paid_at' => 'datetime',
-            'metadata' => 'array',
+
         ];
     }
 

@@ -18,9 +18,9 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->integer('capacity')->nullable();
             $table->decimal('price_per_day', 15, 2)->default(0);
-            $table->string('photo_path')->nullable();
+
             $table->boolean('is_active')->default(true);
-            $table->jsonb('metadata')->nullable();
+
             $table->timestamps();
             $table->softDeletes();
         });

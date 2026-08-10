@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('origin_institution')->nullable();
             $table->string('client_type')->default('individual');
             $table->boolean('is_active')->default(true);
-            $table->jsonb('metadata')->nullable();
+
             $table->timestamps();
             $table->softDeletes();
         });

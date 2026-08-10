@@ -23,7 +23,7 @@ return new class extends Migration
             $table->text('operator_notes')->nullable();
             $table->timestamp('confirmed_at')->nullable();
             $table->string('confirmed_via')->nullable(); // system, whatsapp, email, phone
-            $table->jsonb('metadata')->nullable();
+
             $table->timestamps();
             $table->softDeletes();
 

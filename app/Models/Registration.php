@@ -29,7 +29,7 @@ class Registration extends Model
         'operator_notes',
         'confirmed_at',
         'confirmed_via',
-        'metadata',
+
     ];
 
     protected function casts(): array
@@ -39,7 +39,7 @@ class Registration extends Model
             'graduation_status' => GraduationStatus::class,
             'confirmed_at' => 'datetime',
             'confirmed_via' => ConfirmationChannel::class,
-            'metadata' => 'array',
+
         ];
     }
 

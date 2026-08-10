@@ -25,7 +25,7 @@ class Invoice extends Model
         'paid_at',
         'line_items',
         'notes',
-        'metadata',
+
     ];
 
     protected function casts(): array
@@ -36,7 +36,7 @@ class Invoice extends Model
             'due_date' => 'date',
             'paid_at' => 'datetime',
             'line_items' => 'array',
-            'metadata' => 'array',
+
         ];
     }
 

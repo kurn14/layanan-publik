@@ -19,7 +19,7 @@ class Certificate extends Model
         'issued_date',
         'status',
         'file_path',
-        'metadata',
+
     ];
 
     protected function casts(): array
@@ -27,7 +27,7 @@ class Certificate extends Model
         return [
             'issued_date' => 'date',
             'status' => CertificateStatus::class,
-            'metadata' => 'array',
+
         ];
     }
 

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('issued_date');
             $table->string('status')->default('draft'); // draft, issued, revoked
             $table->string('file_path')->nullable();
-            $table->jsonb('metadata')->nullable();
+
             $table->timestamps();
         });
     }

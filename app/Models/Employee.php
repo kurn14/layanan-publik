@@ -24,7 +24,7 @@ class Employee extends Authenticatable implements FilamentUser
         'phone',
         'is_active',
         'avatar_url',
-        'metadata',
+
     ];
 
     protected $hidden = [
@@ -39,7 +39,7 @@ class Employee extends Authenticatable implements FilamentUser
             'password' => 'hashed',
             'role' => EmployeeRole::class,
             'is_active' => 'boolean',
-            'metadata' => 'array',
+
         ];
     }
 

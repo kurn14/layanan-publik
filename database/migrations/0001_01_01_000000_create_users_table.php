@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->boolean('is_active')->default(true);
             $table->string('avatar_url')->nullable();
-            $table->jsonb('metadata')->nullable();
+
             $table->timestamps();
         });
 

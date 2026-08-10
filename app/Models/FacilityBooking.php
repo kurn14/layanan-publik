@@ -27,7 +27,7 @@ class FacilityBooking extends Model
         'arrival_confirmed',
         'cancellation_fee',
         'notes',
-        'metadata',
+
     ];
 
     protected function casts(): array
@@ -40,7 +40,7 @@ class FacilityBooking extends Model
             'status' => BookingStatus::class,
             'arrival_confirmed' => 'boolean',
             'cancellation_fee' => 'decimal:2',
-            'metadata' => 'array',
+
         ];
     }
 

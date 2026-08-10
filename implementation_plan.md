@@ -199,7 +199,7 @@ Memodifikasi migration bawaan Laravel — mengganti `users` → `employees` dan 
 | `phone` | `string`, nullable | Phone number |
 | `is_active` | `boolean`, default `true` | Account active status |
 | `avatar_url` | `string`, nullable | Profile photo |
-| `metadata` | `jsonb`, nullable | Flexible additional data |
+
 | `timestamps` | — | (bawaan) |
 
 Tabel `password_reset_tokens` dan `sessions` juga diperbarui FK-nya ke `employees`.
@@ -226,7 +226,7 @@ Entitas customer **berdiri sendiri** — pengguna layanan publik, tanpa FK ke `e
 | `origin_institution` | `string`, nullable | Origin institution |
 | `client_type` | `string`, default `'individual'` | `individual`, `institutional` |
 | `is_active` | `boolean`, default `true` | — |
-| `metadata` | `jsonb`, nullable | Additional data |
+
 | `timestamps` | — | `created_at`, `updated_at` |
 | `softDeletes` | — | `deleted_at` |
 
@@ -278,7 +278,7 @@ Pendaftaran pelatihan — menghubungkan **customer** ke **training**, diverifika
 | `operator_notes` | `text`, nullable | Notes from operator |
 | `confirmed_at` | `timestamp`, nullable | Confirmation time |
 | `confirmed_via` | `string`, nullable | `system`, `whatsapp`, `email`, `phone` |
-| `metadata` | `jsonb`, nullable | — |
+
 | `timestamps` | — | — |
 | `softDeletes` | — | — |
 
@@ -321,7 +321,7 @@ Sertifikat — **belongs to `registrations`**:
 | `issued_date` | `date` | — |
 | `status` | `string`, default `'draft'` | `draft`, `issued`, `revoked` |
 | `file_path` | `string`, nullable | PDF file path |
-| `metadata` | `jsonb`, nullable | Signature, template, etc. |
+
 | `timestamps` | — | — |
 
 **Business rule**: Sertifikat hanya dibuat jika `registrations.graduation_status = 'passed'`.
@@ -342,11 +342,27 @@ Master data fasilitas:
 | `description` | `text`, nullable | — |
 | `capacity` | `integer`, nullable | For classrooms |
 | `price_per_day` | `decimal(15,2)`, default `0` | — |
-| `photo_path` | `string`, nullable | Facility photo |
 | `is_active` | `boolean`, default `true` | — |
-| `metadata` | `jsonb`, nullable | — |
+
 | `timestamps` | — | — |
 | `softDeletes` | — | — |
+
+---
+
+#### Migration 7.5: Facility Photos
+
+##### [NEW] `2026_08_07_000007_create_facility_photos_table.php`
+
+Foto fasilitas:
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id` | `id()`, PK | Auto-increment |
+| `facility_id` | `foreignId` → `facilities` | Cascade on delete |
+| `description` | `string`, nullable | Deskripsi |
+| `path` | `string` | Path foto |
+| `sort` | `integer`, default `0` | Urutan |
+| `timestamps` | — | — |
 
 ---
 
@@ -370,7 +386,7 @@ Pemesanan fasilitas — menghubungkan **customer** ke **facility**:
 | `arrival_confirmed` | `boolean`, default `false` | Per business rule in PRD |
 | `cancellation_fee` | `decimal(15,2)`, default `0` | If cancelled < 7 days = 5% |
 | `notes` | `text`, nullable | — |
-| `metadata` | `jsonb`, nullable | — |
+
 | `timestamps` | — | — |
 | `softDeletes` | — | — |
 
@@ -396,7 +412,7 @@ Invoice pembayaran — bisa dari registrasi pelatihan ATAU pemesanan fasilitas:
 | `paid_at` | `timestamp`, nullable | Settlement time |
 | `line_items` | `jsonb`, nullable | Itemized bill details |
 | `notes` | `text`, nullable | — |
-| `metadata` | `jsonb`, nullable | — |
+
 | `timestamps` | — | — |
 | `softDeletes` | — | — |
 
@@ -419,7 +435,7 @@ Catatan transaksi pembayaran:
 | `verified_by` | `foreignId` → `employees`, nullable | Verifying operator |
 | `paid_at` | `timestamp`, nullable | — |
 | `notes` | `text`, nullable | — |
-| `metadata` | `jsonb`, nullable | — |
+
 | `timestamps` | — | — |
 
 ---

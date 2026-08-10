@@ -24,7 +24,7 @@ return new class extends Migration
             $table->boolean('arrival_confirmed')->default(false);
             $table->decimal('cancellation_fee', 15, 2)->default(0);
             $table->text('notes')->nullable();
-            $table->jsonb('metadata')->nullable();
+
             $table->timestamps();
             $table->softDeletes();
         });

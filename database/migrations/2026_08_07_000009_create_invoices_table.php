@@ -22,7 +22,7 @@ return new class extends Migration
             $table->timestamp('paid_at')->nullable();
             $table->jsonb('line_items')->nullable();
             $table->text('notes')->nullable();
-            $table->jsonb('metadata')->nullable();
+
             $table->timestamps();
             $table->softDeletes();
         });

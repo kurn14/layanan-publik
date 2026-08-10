@@ -25,7 +25,7 @@ class Customer extends Authenticatable
         'origin_institution',
         'client_type',
         'is_active',
-        'metadata',
+
     ];
 
     protected $hidden = [
@@ -40,7 +40,7 @@ class Customer extends Authenticatable
             'password' => 'hashed',
             'client_type' => ClientType::class,
             'is_active' => 'boolean',
-            'metadata' => 'array',
+
         ];
     }
 

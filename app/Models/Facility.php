@@ -20,9 +20,9 @@ class Facility extends Model
         'description',
         'capacity',
         'price_per_day',
-        'photo_path',
+
         'is_active',
-        'metadata',
+
     ];
 
     protected function casts(): array
@@ -32,8 +32,12 @@ class Facility extends Model
             'capacity' => 'integer',
             'price_per_day' => 'decimal:2',
             'is_active' => 'boolean',
-            'metadata' => 'array',
         ];
+    }
+
+    public function photos()
+    {
+        return $this->hasMany(FacilityPhoto::class)->orderBy('sort');
     }
 
     public function bookings(): HasMany
