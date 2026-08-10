@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('facilities', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->jsonb('name');
             $table->string('type'); // classroom, module, catering, other
-            $table->text('description')->nullable();
+            $table->jsonb('description')->nullable();
             $table->integer('capacity')->nullable();
             $table->decimal('price_per_day', 15, 2)->default(0);
 

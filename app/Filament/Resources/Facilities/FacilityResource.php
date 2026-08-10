@@ -16,9 +16,11 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use LaraZeus\SpatieTranslatable\Resources\Concerns\Translatable;
 
 class FacilityResource extends Resource
 {
+    use Translatable;
     protected static ?string $model = Facility::class;
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-building-office-2';

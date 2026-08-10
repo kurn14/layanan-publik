@@ -241,11 +241,11 @@ Satu tabel pelatihan lengkap dengan jadwal dan kuota:
 | Column | Type | Description |
 |--------|------|-------------|
 | `id` | `id()`, PK | Auto-increment |
-| `name` | `string` | Training name |
+| `name` | `jsonb` | Training name (Translatable) |
 | `type` | `string` | `technical`, `managerial`, `functional` |
-| `description` | `text`, nullable | Training description |
+| `description` | `jsonb`, nullable | Training description (Translatable) |
 | `duration_days` | `integer` | Duration in days |
-| `requirements` | `text`, nullable | Prerequisites |
+| `requirements` | `jsonb`, nullable | Prerequisites (Translatable) |
 | `start_date` | `date` | Training start date |
 | `end_date` | `date` | Training end date |
 | `location` | `string` | Training venue |
@@ -337,9 +337,9 @@ Master data fasilitas:
 | Column | Type | Description |
 |--------|------|-------------|
 | `id` | `id()`, PK | Auto-increment |
-| `name` | `string` | Facility name |
+| `name` | `jsonb` | Facility name (Translatable) |
 | `type` | `string` | `classroom`, `module`, `catering`, `other` |
-| `description` | `text`, nullable | — |
+| `description` | `jsonb`, nullable | Facility description (Translatable) |
 | `capacity` | `integer`, nullable | For classrooms |
 | `price_per_day` | `decimal(15,2)`, default `0` | — |
 | `is_active` | `boolean`, default `true` | — |
@@ -359,7 +359,7 @@ Foto fasilitas:
 |--------|------|-------------|
 | `id` | `id()`, PK | Auto-increment |
 | `facility_id` | `foreignId` → `facilities` | Cascade on delete |
-| `description` | `string`, nullable | Deskripsi |
+| `description` | `jsonb`, nullable | Deskripsi (Translatable) |
 | `path` | `string` | Path foto |
 | `sort` | `integer`, default `0` | Urutan |
 | `timestamps` | — | — |
@@ -456,6 +456,29 @@ Catatan transaksi pembayaran:
 | 10 | `2026_08_07_000010_create_payments_table.php` | `payments` | CREATE | → `invoices`, `employees` |
 
 **Total: 10 migration files** — 1 MODIFY + 9 CREATE — menghasilkan **10 tabel** (`employees` menggantikan `users` + 9 tabel baru).
+
+---
+
+## Rencana Aksi Multi-Bahasa (Spatie Translatable)
+
+Untuk mendukung fitur multi-bahasa dinamis pada data (menyimpan data dalam format JSON untuk berbagai bahasa), berikut adalah rencana pembaruannya:
+
+### 1. Perubahan Struktur Database (Migrations)
+Karena plugin `Spatie Translatable` menggunakan kolom bertipe JSON, kita perlu mengubah tipe data beberapa kolom dari `string` / `text` menjadi `jsonb`. Kolom yang ditargetkan:
+- Tabel **`trainings`**: `name`, `description`, `requirements`
+- Tabel **`facilities`**: `name`, `description`
+- Tabel **`facility_photos`**: `description`
+
+> [!IMPORTANT]
+> **Keputusan Dibutuhkan:** Karena file migration sudah pernah dijalankan, saya akan membuat **satu file migration baru** untuk mengubah (ALTER) tipe data kolom-kolom ini ke `jsonb` secara aman tanpa menghapus data yang ada. Apakah Anda setuju dengan pendekatan ini, atau Anda lebih memilih agar saya memodifikasi file migration lama dan Anda akan menjalankan `migrate:fresh` sendiri?
+
+### 2. Pembaruan Model Eloquent
+Pada model `Training`, `Facility`, dan `FacilityPhoto`, kita akan menambahkan:
+- Trait `Spatie\Translatable\HasTranslations`.
+- Properti `$translatable = ['kolom_1', 'kolom_2'];`.
+
+### 3. Pembaruan Resource Filament
+Untuk Resource Filament (`TrainingResource` dan `FacilityResource`), kita harus mengimplementasikan trait `Filament\Resources\Concerns\Translatable` jika ingin memanfaatkan *Locale Switcher* bawaan Filament/Zeus secara penuh, serta menyesuaikan skema formulir.
 
 ---
 

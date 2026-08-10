@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('trainings', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->jsonb('name');
             $table->string('type'); // technical, managerial, functional
-            $table->text('description')->nullable();
+            $table->jsonb('description')->nullable();
             $table->integer('duration_days');
-            $table->text('requirements')->nullable();
+            $table->jsonb('requirements')->nullable();
             $table->date('start_date');
             $table->date('end_date');
             $table->string('location');
