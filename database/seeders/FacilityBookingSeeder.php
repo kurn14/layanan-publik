@@ -36,11 +36,6 @@ class FacilityBookingSeeder extends Seeder
                 'arrival_confirmed' => true,
                 'cancellation_fee' => 0.00,
                 'notes' => 'Membutuhkan konfigurasi meja round table untuk 12 meja @ 10 orang dan live streaming setup.',
-                'metadata' => [
-                    'pic_name' => 'Dewi Anggraeni, S.Tr.Ak.',
-                    'pic_phone' => '081334455667',
-                    'catering_package' => 'Prasmanan VIP 120 Porsi',
-                ],
             ],
             [
                 'facility_id' => $fPrambanan?->id,
@@ -54,10 +49,6 @@ class FacilityBookingSeeder extends Seeder
                 'arrival_confirmed' => false,
                 'cancellation_fee' => 0.00,
                 'notes' => 'Susunan kursi classroom standard dengan 2 mic wireless tambahan.',
-                'metadata' => [
-                    'pic_name' => 'Dr. Hendro Prasetyo, M.Kes.',
-                    'pic_phone' => '081445566778',
-                ],
             ],
             [
                 'facility_id' => $fLab?->id,
@@ -71,10 +62,6 @@ class FacilityBookingSeeder extends Seeder
                 'arrival_confirmed' => false,
                 'cancellation_fee' => 0.00,
                 'notes' => 'Menunggu persetujuan DPA Perubahan Inspektorat.',
-                'metadata' => [
-                    'pic_name' => 'Budi Santoso, S.E., Ak.',
-                    'pic_phone' => '081223344556',
-                ],
             ],
         ];
 

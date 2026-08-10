@@ -198,7 +198,7 @@ Memodifikasi migration bawaan Laravel — mengganti `users` → `employees` dan 
 | `role` | `string`, default `'operator'` | `admin`, `operator`, `leader` |
 | `phone` | `string`, nullable | Phone number |
 | `is_active` | `boolean`, default `true` | Account active status |
-| `avatar_url` | `string`, nullable | Profile photo |
+
 
 | `timestamps` | — | (bawaan) |
 
@@ -482,3 +482,7 @@ php artisan migrate
 - Pastikan unique constraint `[training_id, customer_id]` di `registrations` berjalan.
 - Pastikan unique constraint `[registration_id, date]` di `attendances` berjalan.
 - Pastikan unique constraint `[facility_id, start_date, end_date]` di `facility_bookings` berjalan.
+
+
+### BATASAN
+- Tidak boleh auto commit

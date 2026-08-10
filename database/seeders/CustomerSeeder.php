@@ -22,10 +22,6 @@ class CustomerSeeder extends Seeder
                 'origin_institution' => 'Inspektorat Kabupaten Sleman',
                 'client_type' => ClientType::INSTITUTIONAL,
                 'is_active' => true,
-                'metadata' => [
-                    'nip' => '198805122014021003',
-                    'department' => 'Bidang Pengawasan Keuangan',
-                ],
             ],
             [
                 'name' => 'Dewi Anggraeni, S.Tr.Ak.',
@@ -37,10 +33,6 @@ class CustomerSeeder extends Seeder
                 'origin_institution' => 'BPKAD Kota Yogyakarta',
                 'client_type' => ClientType::INSTITUTIONAL,
                 'is_active' => true,
-                'metadata' => [
-                    'nip' => '199208152018012001',
-                    'department' => 'Bidang Perbendaharaan',
-                ],
             ],
             [
                 'name' => 'Dr. Hendro Prasetyo, M.Kes.',
@@ -52,10 +44,6 @@ class CustomerSeeder extends Seeder
                 'origin_institution' => 'RSUP Dr. Sardjito Yogyakarta',
                 'client_type' => ClientType::INSTITUTIONAL,
                 'is_active' => true,
-                'metadata' => [
-                    'nip' => '197503192005011004',
-                    'department' => 'Satuan Pemeriksaan Internal',
-                ],
             ],
             [
                 'name' => 'Rina Wahyuningsih, S.Sos.',
@@ -67,9 +55,6 @@ class CustomerSeeder extends Seeder
                 'origin_institution' => 'Dinas Pendidikan Kepemudaan dan Olahraga Kab. Bantul',
                 'client_type' => ClientType::INSTITUTIONAL,
                 'is_active' => true,
-                'metadata' => [
-                    'nip' => '199507092020122008',
-                ],
             ],
             [
                 'name' => 'Agus Triyono, S.Kom., M.T.I.',
@@ -81,9 +66,6 @@ class CustomerSeeder extends Seeder
                 'origin_institution' => 'Independen / Konsultan Publik',
                 'client_type' => ClientType::INDIVIDUAL,
                 'is_active' => true,
-                'metadata' => [
-                    'certificate_interest' => 'CISA, CFrA',
-                ],
             ],
             [
                 'name' => 'Tri Hastuti, S.E.',
@@ -95,9 +77,6 @@ class CustomerSeeder extends Seeder
                 'origin_institution' => 'Inspektorat Daerah Kabupaten Kulon Progo',
                 'client_type' => ClientType::INSTITUTIONAL,
                 'is_active' => true,
-                'metadata' => [
-                    'nip' => '199104202016022002',
-                ],
             ],
         ];
 

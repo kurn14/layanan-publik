@@ -23,7 +23,7 @@ class Employee extends Authenticatable implements FilamentUser
         'role',
         'phone',
         'is_active',
-        'avatar_url',
+
 
     ];
 

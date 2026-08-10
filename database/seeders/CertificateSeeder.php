@@ -21,12 +21,6 @@ class CertificateSeeder extends Seeder
                 'issued_date' => '2026-07-25',
                 'status' => CertificateStatus::ISSUED,
                 'file_path' => 'certificates/CERT-202607-0001.pdf',
-                'metadata' => [
-                    'signatory_name' => 'Drs. Bambang Sudiro, Ak., M.M., CA., CFrA.',
-                    'signatory_position' => 'Kepala Perwakilan BPKP DIY',
-                    'hours_credit' => 40,
-                    'grade' => 'Sangat Baik (A)',
-                ],
             ],
             [
                 'registration_id' => $reg6?->id,
@@ -34,12 +28,6 @@ class CertificateSeeder extends Seeder
                 'issued_date' => '2026-07-25',
                 'status' => CertificateStatus::ISSUED,
                 'file_path' => 'certificates/CERT-202607-0002.pdf',
-                'metadata' => [
-                    'signatory_name' => 'Drs. Bambang Sudiro, Ak., M.M., CA., CFrA.',
-                    'signatory_position' => 'Kepala Perwakilan BPKP DIY',
-                    'hours_credit' => 40,
-                    'grade' => 'Baik (B+)',
-                ],
             ],
         ];
 

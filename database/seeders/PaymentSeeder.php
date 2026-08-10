@@ -30,11 +30,6 @@ class PaymentSeeder extends Seeder
                 'verified_by' => null,
                 'paid_at' => now()->subDays(2),
                 'notes' => 'Transfer dari Bank BPD DIY ke Rekening Giro BPKP DIY.',
-                'metadata' => [
-                    'source_bank' => 'Bank BPD DIY',
-                    'sender_account' => '001.211.004921',
-                    'sender_name' => 'Bendahara Pengeluaran Inspt Sleman',
-                ],
             ],
             [
                 'invoice_id' => $inv3?->id,
@@ -45,10 +40,6 @@ class PaymentSeeder extends Seeder
                 'verified_by' => $operator?->id,
                 'paid_at' => '2026-07-10 14:20:00',
                 'notes' => 'Pembayaran QRIS melalui Mobile Banking BCA terverifikasi otomatis.',
-                'metadata' => [
-                    'qris_rrn' => '984729104829',
-                    'issuer' => 'BCA',
-                ],
             ],
             [
                 'invoice_id' => $inv4?->id,
@@ -59,10 +50,6 @@ class PaymentSeeder extends Seeder
                 'verified_by' => $operator2?->id,
                 'paid_at' => '2026-08-02 09:30:00',
                 'notes' => 'SP2D Pemkot Yogyakarta telah dicocokkan dengan mutasi rekening koran kas negara.',
-                'metadata' => [
-                    'source_bank' => 'Bank BPD DIY Cabang Senopati',
-                    'sp2d_verified' => true,
-                ],
             ],
         ];
 

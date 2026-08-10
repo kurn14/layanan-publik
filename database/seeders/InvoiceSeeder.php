@@ -36,10 +36,6 @@ class InvoiceSeeder extends Seeder
                     ],
                 ],
                 'notes' => 'Pembayaran via transfer rekening kas BLU BPKP.',
-                'metadata' => [
-                    'billing_to' => 'Inspektorat Kabupaten Sleman',
-                    'npwp' => '00.123.456.7-542.000',
-                ],
             ],
             [
                 'registration_id' => $reg2?->id,
@@ -58,9 +54,6 @@ class InvoiceSeeder extends Seeder
                     ],
                 ],
                 'notes' => 'Batas akhir pembayaran H-7 sebelum pelatihan dimulai.',
-                'metadata' => [
-                    'billing_to' => 'BPKAD Kota Yogyakarta',
-                ],
             ],
             [
                 'registration_id' => $reg5?->id,
@@ -79,9 +72,6 @@ class InvoiceSeeder extends Seeder
                     ],
                 ],
                 'notes' => 'Pembayaran lunas via QRIS.',
-                'metadata' => [
-                    'billing_to' => 'Agus Triyono (Peserta Mandiri)',
-                ],
             ],
             [
                 'registration_id' => null,
@@ -100,10 +90,6 @@ class InvoiceSeeder extends Seeder
                     ],
                 ],
                 'notes' => 'Lunas SP2D Pemerintah Kota Yogyakarta.',
-                'metadata' => [
-                    'billing_to' => 'Pemerintah Kota Yogyakarta',
-                    'sp2d_number' => 'SP2D/08/2026/04521',
-                ],
             ],
         ];
 

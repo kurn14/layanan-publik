@@ -19,11 +19,7 @@ class EmployeeSeeder extends Seeder
                 'role' => EmployeeRole::ADMIN,
                 'phone' => '081234567890',
                 'is_active' => true,
-                'avatar_url' => null,
-                'metadata' => [
-                    'nip' => '198501152010011002',
-                    'unit' => 'Bagian Tata Usaha & Pengelolaan Data',
-                ],
+
             ],
             [
                 'name' => 'Ahmad Fauzi, S.Kom.',
@@ -32,11 +28,7 @@ class EmployeeSeeder extends Seeder
                 'role' => EmployeeRole::OPERATOR,
                 'phone' => '081298765432',
                 'is_active' => true,
-                'avatar_url' => null,
-                'metadata' => [
-                    'nip' => '199203202015021004',
-                    'unit' => 'Subbag Pelayanan Publik & Pelatihan',
-                ],
+
             ],
             [
                 'name' => 'Siti Rahmawati, S.E.',
@@ -45,11 +37,7 @@ class EmployeeSeeder extends Seeder
                 'role' => EmployeeRole::OPERATOR,
                 'phone' => '081345678901',
                 'is_active' => true,
-                'avatar_url' => null,
-                'metadata' => [
-                    'nip' => '199407122019012003',
-                    'unit' => 'Subbag Sarana & Prasarana',
-                ],
+
             ],
             [
                 'name' => 'Drs. Bambang Sudiro, Ak., M.M., CA., CFrA.',
@@ -58,11 +46,7 @@ class EmployeeSeeder extends Seeder
                 'role' => EmployeeRole::LEADER,
                 'phone' => '081122334455',
                 'is_active' => true,
-                'avatar_url' => null,
-                'metadata' => [
-                    'nip' => '196805141993031001',
-                    'position' => 'Kepala Perwakilan BPKP DIY',
-                ],
+
             ],
         ];
 

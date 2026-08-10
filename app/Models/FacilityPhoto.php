@@ -8,7 +8,7 @@ class FacilityPhoto extends Model
 {
     protected $fillable = [
         'facility_id',
-        'deskripsi',
+        'description',
         'path',
         'sort',
     ];

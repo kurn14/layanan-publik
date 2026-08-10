@@ -5,7 +5,7 @@ namespace App\Filament\Resources\Facilities\Schemas;
 use App\Enums\FacilityType;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\FileUpload;
@@ -22,7 +22,7 @@ class FacilityForm
                 Select::make('type')
                     ->options(FacilityType::class)
                     ->required(),
-                Textarea::make('description')
+                RichEditor::make('description')
                     ->columnSpanFull(),
                 TextInput::make('capacity')
                     ->numeric(),
@@ -38,8 +38,9 @@ class FacilityForm
                         FileUpload::make('path')
                             ->label('Foto')
                             ->image()
+                            ->imageEditor()
                             ->required(),
-                        TextInput::make('deskripsi')
+                        TextInput::make('description')
                             ->label('Deskripsi'),
                     ])
                     ->orderColumn('sort')

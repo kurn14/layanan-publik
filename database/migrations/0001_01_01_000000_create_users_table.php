@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('role')->default('operator');
             $table->string('phone')->nullable();
             $table->boolean('is_active')->default(true);
-            $table->string('avatar_url')->nullable();
+
 
             $table->timestamps();
         });

@@ -33,8 +33,7 @@ class EmployeeForm
                     ->tel(),
                 Toggle::make('is_active')
                     ->required(),
-                TextInput::make('avatar_url')
-                    ->url(),
+
 
             ]);
     }
