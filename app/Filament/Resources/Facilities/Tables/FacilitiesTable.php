@@ -49,6 +49,7 @@ class FacilitiesTable
                 TrashedFilter::make(),
             ])
             ->recordActions([
+                \Filament\Actions\ViewAction::make(),
                 EditAction::make(),
             ])
             ->toolbarActions([

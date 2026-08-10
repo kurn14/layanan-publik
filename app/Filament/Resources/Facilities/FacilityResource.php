@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Facilities;
 use App\Filament\Resources\Facilities\Pages\CreateFacility;
 use App\Filament\Resources\Facilities\Pages\EditFacility;
 use App\Filament\Resources\Facilities\Pages\ListFacilities;
+use App\Filament\Resources\Facilities\Pages\ViewFacility;
 use App\Filament\Resources\Facilities\Schemas\FacilityForm;
 use App\Filament\Resources\Facilities\Tables\FacilitiesTable;
 use App\Models\Facility;
@@ -36,6 +37,11 @@ class FacilityResource extends Resource
         return FacilitiesTable::configure($table);
     }
 
+    public static function infolist(Schema $schema): Schema
+    {
+        return \App\Filament\Resources\Facilities\Infolists\FacilityInfolist::configure($schema);
+    }
+
     public static function getRelations(): array
     {
         return [
@@ -48,6 +54,7 @@ class FacilityResource extends Resource
         return [
             'index' => ListFacilities::route('/'),
             'create' => CreateFacility::route('/create'),
+            'view' => ViewFacility::route('/{record}'),
             'edit' => EditFacility::route('/{record}/edit'),
         ];
     }
