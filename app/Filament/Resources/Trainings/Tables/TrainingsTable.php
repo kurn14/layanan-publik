@@ -28,14 +28,14 @@ class TrainingsTable
         return $table
             ->columns([
                 TextColumn::make('name')
-                    ->label('Nama Pelatihan')
+                    ->label(__('Training Name'))
                     ->searchable()
                     ->sortable()
                     ->weight('bold')
                     ->wrap(),
 
                 TextColumn::make('type')
-                    ->label('Jenis')
+                    ->label(__('Type'))
                     ->badge()
                     ->formatStateUsing(fn ($state) => $state instanceof TrainingType ? $state->label() : TrainingType::tryFrom($state)?->label() ?? $state)
                     ->color(fn ($state) => match ($state instanceof TrainingType ? $state : TrainingType::tryFrom($state)) {
@@ -47,7 +47,7 @@ class TrainingsTable
                     ->sortable(),
 
                 TextColumn::make('status')
-                    ->label('Status')
+                    ->label(__('Status'))
                     ->badge()
                     ->formatStateUsing(fn ($state) => $state instanceof TrainingStatus ? $state->label() : TrainingStatus::tryFrom($state)?->label() ?? $state)
                     ->color(fn ($state) => match ($state instanceof TrainingStatus ? $state : TrainingStatus::tryFrom($state)) {
@@ -62,19 +62,19 @@ class TrainingsTable
                     ->sortable(),
 
                 TextColumn::make('start_date')
-                    ->label('Jadwal Pelaksanaan')
+                    ->label(__('Execution Schedule'))
                     ->date('d M Y')
-                    ->description(fn (Training $record) => $record->end_date ? 's.d. ' . $record->end_date->format('d M Y') : null)
+                    ->description(fn (Training $record) => $record->end_date ? __('until') . ' ' . $record->end_date->format('d M Y') : null)
                     ->sortable(),
 
                 TextColumn::make('duration_days')
-                    ->label('Durasi')
-                    ->suffix(' hari')
+                    ->label(__('Duration'))
+                    ->suffix(' ' . __('days'))
                     ->alignCenter()
                     ->sortable(),
 
                 TextColumn::make('filled_quota')
-                    ->label('Kuota')
+                    ->label(__('Quota'))
                     ->formatStateUsing(fn (Training $record) => "{$record->filled_quota} / {$record->max_quota}")
                     ->badge()
                     ->color(fn (Training $record) => $record->filled_quota >= $record->max_quota ? 'danger' : 'success')
@@ -82,20 +82,20 @@ class TrainingsTable
                     ->sortable(),
 
                 TextColumn::make('location')
-                    ->label('Lokasi')
+                    ->label(__('Location'))
                     ->limit(30)
                     ->tooltip(fn (Training $record) => $record->location)
                     ->searchable()
                     ->toggleable(),
 
                 IconColumn::make('is_active')
-                    ->label('Aktif')
+                    ->label(__('Active'))
                     ->boolean()
                     ->alignCenter()
                     ->sortable(),
 
                 TextColumn::make('created_at')
-                    ->label('Dibuat Pada')
+                    ->label(__('Created At'))
                     ->dateTime('d M Y H:i')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -103,20 +103,20 @@ class TrainingsTable
             ->defaultSort('start_date', 'desc')
             ->filters([
                 SelectFilter::make('type')
-                    ->label('Jenis Pelatihan')
+                    ->label(__('Training Type'))
                     ->options(collect(TrainingType::cases())->mapWithKeys(fn ($case) => [$case->value => $case->label()])),
 
                 SelectFilter::make('status')
-                    ->label('Status Pelatihan')
+                    ->label(__('Training Status'))
                     ->options(collect(TrainingStatus::cases())->mapWithKeys(fn ($case) => [$case->value => $case->label()])),
 
                 TernaryFilter::make('is_active')
-                    ->label('Status Publikasi')
-                    ->trueLabel('Hanya Pelatihan Aktif')
-                    ->falseLabel('Pelatihan Nonaktif'),
+                    ->label(__('Publication Status'))
+                    ->trueLabel(__('Active Training Only'))
+                    ->falseLabel(__('Inactive Training')),
 
                 TrashedFilter::make()
-                    ->label('Data Terhapus'),
+                    ->label(__('Deleted Data')),
             ])
             ->recordActions([
                 ViewAction::make(),

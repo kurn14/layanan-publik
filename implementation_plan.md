@@ -486,3 +486,17 @@ php artisan migrate
 
 ### BATASAN
 - Tidak boleh auto commit
+
+---
+
+## Lessons Learned / Best Practices
+
+### 1. Translasi Label dan Navigasi pada Filament
+Saat menerapkan multi-bahasa (translasi dengan helper `__()`) pada pengaturan Filament Resource, hindari menggunakannya langsung pada deklarasi properti *static* (contoh: `protected static ?string $modelLabel = __('Customer');`). Hal ini dilarang oleh PHP dan akan menyebabkan *Fatal Error: Constant expression contains invalid operations*.
+
+Sebagai praktik terbaik (Best Practice), gunakan metode bawaan Filament untuk me-*return* nilai yang diterjemahkan:
+- Gunakan `public static function getModelLabel(): string` alih-alih properti `$modelLabel`.
+- Gunakan `public static function getPluralModelLabel(): string` alih-alih properti `$pluralModelLabel`.
+- Gunakan `public static function getNavigationGroup(): ?string` alih-alih properti `$navigationGroup`.
+
+Jangan lupa juga untuk mendaftarkan *key* terjemahan Bahasa Inggris tersebut ke dalam file `lang/id.json` agar translasi ke Bahasa Indonesia dapat berfungsi dengan baik.

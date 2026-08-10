@@ -16,24 +16,33 @@ class CustomerForm
         return $schema
             ->components([
                 TextInput::make('name')
+                    ->label(__('Name'))
                     ->required(),
                 TextInput::make('email')
-                    ->label('Email address')
+                    ->label(__('Email Address'))
                     ->email()
                     ->required(),
-                DateTimePicker::make('email_verified_at'),
+                DateTimePicker::make('email_verified_at')
+                    ->label(__('Email Verified At')),
                 TextInput::make('password')
+                    ->label(__('Password'))
                     ->password(),
-                TextInput::make('id_number'),
+                TextInput::make('id_number')
+                    ->label(__('ID Number')),
                 TextInput::make('phone')
+                    ->label(__('Phone'))
                     ->tel(),
-                TextInput::make('position'),
-                TextInput::make('origin_institution'),
+                TextInput::make('position')
+                    ->label(__('Position')),
+                TextInput::make('origin_institution')
+                    ->label(__('Origin Institution')),
                 Select::make('client_type')
+                    ->label(__('Client Type'))
                     ->options(ClientType::class)
                     ->default('individual')
                     ->required(),
                 Toggle::make('is_active')
+                    ->label(__('Active Status'))
                     ->required(),
 
             ]);

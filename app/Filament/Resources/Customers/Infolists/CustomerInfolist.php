@@ -13,20 +13,20 @@ class CustomerInfolist
     {
         return $schema
             ->components([
-                Section::make('Customer Details')
+                Section::make(__('Customer Details'))
                     ->components([
                         Grid::make(2)->components([
-                            TextEntry::make('name')->label('Nama'),
-                            TextEntry::make('email')->label('Email'),
-                            TextEntry::make('phone')->label('Telepon'),
-                            TextEntry::make('id_number')->label('Nomor Identitas'),
-                            TextEntry::make('position')->label('Jabatan'),
-                            TextEntry::make('origin_institution')->label('Asal Instansi'),
-                            TextEntry::make('client_type')->badge()->label('Tipe Klien'),
+                            TextEntry::make('name')->label(__('Name')),
+                            TextEntry::make('email')->label(__('Email')),
+                            TextEntry::make('phone')->label(__('Phone')),
+                            TextEntry::make('id_number')->label(__('ID Number')),
+                            TextEntry::make('position')->label(__('Position')),
+                            TextEntry::make('origin_institution')->label(__('Origin Institution')),
+                            TextEntry::make('client_type')->badge()->label(__('Client Type')),
                             TextEntry::make('is_active')
-                                ->label('Status Aktif')
+                                ->label(__('Active Status'))
                                 ->badge()
-                                ->state(fn ($record) => $record->is_active ? 'Aktif' : 'Non-aktif')
+                                ->state(fn ($record) => $record->is_active ? __('Active') : __('Inactive'))
                                 ->color(fn ($record) => $record->is_active ? 'success' : 'danger'),
                         ]),
                     ]),

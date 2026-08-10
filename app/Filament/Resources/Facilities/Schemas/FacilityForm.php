@@ -18,30 +18,37 @@ class FacilityForm
         return $schema
             ->components([
                 TextInput::make('name')
+                    ->label(__('Name'))
                     ->required(),
                 Select::make('type')
+                    ->label(__('Type'))
                     ->options(FacilityType::class)
                     ->required(),
                 RichEditor::make('description')
+                    ->label(__('Description'))
                     ->columnSpanFull(),
                 TextInput::make('capacity')
+                    ->label(__('Capacity'))
                     ->numeric(),
                 TextInput::make('price_per_day')
+                    ->label(__('Price per Day'))
                     ->required()
                     ->numeric()
                     ->default(0),
                 Toggle::make('is_active')
+                    ->label(__('Active Status'))
                     ->required(),
                 Repeater::make('photos')
+                    ->label(__('Photos'))
                     ->relationship()
                     ->schema([
                         FileUpload::make('path')
-                            ->label('Foto')
+                            ->label(__('Photo'))
                             ->image()
                             ->imageEditor()
                             ->required(),
                         TextInput::make('description')
-                            ->label('Deskripsi'),
+                            ->label(__('Description')),
                     ])
                     ->orderColumn('sort')
                     ->defaultItems(1)

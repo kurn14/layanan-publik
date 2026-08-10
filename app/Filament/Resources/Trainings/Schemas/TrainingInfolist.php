@@ -17,10 +17,10 @@ class TrainingInfolist
     {
         return $schema
             ->components([
-                Section::make('Informasi Utama Pelatihan')
+                Section::make(__('Main Training Information'))
                     ->components([
                         TextEntry::make('name')
-                            ->label('Nama Pelatihan')
+                            ->label(__('Training Name'))
                             ->weight('bold')
                             ->size('lg')
                             ->columnSpanFull(),
@@ -28,7 +28,7 @@ class TrainingInfolist
                         Grid::make(2)
                             ->components([
                                 TextEntry::make('type')
-                                    ->label('Jenis Pelatihan')
+                                    ->label(__('Training Type'))
                                     ->badge()
                                     ->formatStateUsing(fn ($state) => $state instanceof TrainingType ? $state->label() : TrainingType::tryFrom($state)?->label() ?? $state)
                                     ->color(fn ($state) => match ($state instanceof TrainingType ? $state : TrainingType::tryFrom($state)) {
@@ -39,7 +39,7 @@ class TrainingInfolist
                                     }),
 
                                 TextEntry::make('status')
-                                    ->label('Status Pelatihan')
+                                    ->label(__('Training Status'))
                                     ->badge()
                                     ->formatStateUsing(fn ($state) => $state instanceof TrainingStatus ? $state->label() : TrainingStatus::tryFrom($state)?->label() ?? $state)
                                     ->color(fn ($state) => match ($state instanceof TrainingStatus ? $state : TrainingStatus::tryFrom($state)) {
@@ -54,67 +54,67 @@ class TrainingInfolist
                             ]),
 
                         TextEntry::make('description')
-                            ->label('Deskripsi Pelatihan')
-                            ->placeholder('Tidak ada deskripsi.')
+                            ->label(__('Training Description'))
+                            ->placeholder(__('No description.'))
                             ->columnSpanFull(),
 
                         TextEntry::make('requirements')
-                            ->label('Persyaratan Peserta')
-                            ->placeholder('Tidak ada persyaratan khusus.')
+                            ->label(__('Participant Requirements'))
+                            ->placeholder(__('No specific requirements.'))
                             ->columnSpanFull(),
                     ]),
 
-                Section::make('Jadwal & Tempat Pelaksanaan')
+                Section::make(__('Schedule & Location'))
                     ->components([
                         Grid::make(3)
                             ->components([
                                 TextEntry::make('start_date')
-                                    ->label('Tanggal Mulai')
+                                    ->label(__('Start Date'))
                                     ->date('d F Y'),
 
                                 TextEntry::make('end_date')
-                                    ->label('Tanggal Selesai')
+                                    ->label(__('End Date'))
                                     ->date('d F Y'),
 
                                 TextEntry::make('duration_days')
-                                    ->label('Durasi')
-                                    ->suffix(' Hari'),
+                                    ->label(__('Duration'))
+                                    ->suffix(' ' . __('Days')),
                             ]),
 
                         TextEntry::make('location')
-                            ->label('Lokasi / Ruangan')
+                            ->label(__('Location / Venue'))
                             ->columnSpanFull(),
                     ]),
 
-                Section::make('Kuota & Publikasi')
+                Section::make(__('Quota & Publication'))
                     ->components([
                         Grid::make(3)
                             ->components([
                                 TextEntry::make('max_quota')
-                                    ->label('Kuota Maksimal')
-                                    ->suffix(' Orang'),
+                                    ->label(__('Maximum Quota'))
+                                    ->suffix(' ' . __('People')),
 
                                 TextEntry::make('filled_quota')
-                                    ->label('Kuota Terisi')
-                                    ->suffix(' Orang'),
+                                    ->label(__('Filled Quota'))
+                                    ->suffix(' ' . __('People')),
 
                                 IconEntry::make('is_active')
-                                    ->label('Status Publikasi')
+                                    ->label(__('Publication Status'))
                                     ->boolean(),
                             ]),
 
                         KeyValueEntry::make('metadata')
-                            ->label('Data Tambahan (Metadata)')
+                            ->label(__('Additional Data (Metadata)'))
                             ->columnSpanFull(),
 
                         Grid::make(2)
                             ->components([
                                 TextEntry::make('created_at')
-                                    ->label('Dibuat Pada')
+                                    ->label(__('Created At'))
                                     ->dateTime('d F Y H:i:s'),
 
                                 TextEntry::make('updated_at')
-                                    ->label('Terakhir Diperbarui')
+                                    ->label(__('Last Updated'))
                                     ->dateTime('d F Y H:i:s'),
                             ]),
                     ]),

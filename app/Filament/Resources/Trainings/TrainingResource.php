@@ -24,11 +24,20 @@ class TrainingResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    protected static ?string $modelLabel = 'Pelatihan';
+    public static function getModelLabel(): string
+    {
+        return __('Training');
+    }
 
-    protected static ?string $pluralModelLabel = 'Data Pelatihan';
+    public static function getPluralModelLabel(): string
+    {
+        return __('Training Data');
+    }
 
-    protected static string|UnitEnum|null $navigationGroup = 'Layanan Pelatihan';
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Training Services');
+    }
 
     protected static ?int $navigationSort = 1;
 

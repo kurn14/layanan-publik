@@ -15,31 +15,31 @@ class FacilityInfolist
     {
         return $schema
             ->components([
-                Section::make('Facility Details')
+                Section::make(__('Facility Details'))
                     ->components([
                         Grid::make(2)->components([
-                            TextEntry::make('name')->label('Nama Fasilitas'),
-                            TextEntry::make('type')->badge()->label('Tipe'),
-                            TextEntry::make('capacity')->label('Kapasitas'),
-                            TextEntry::make('price_per_day')->money('IDR')->label('Harga per Hari'),
+                            TextEntry::make('name')->label(__('Facility Name')),
+                            TextEntry::make('type')->badge()->label(__('Type')),
+                            TextEntry::make('capacity')->label(__('Capacity')),
+                            TextEntry::make('price_per_day')->money('IDR')->label(__('Price per Day')),
                             TextEntry::make('is_active')
-                                ->label('Status Aktif')
+                                ->label(__('Active Status'))
                                 ->badge()
-                                ->state(fn ($record) => $record->is_active ? 'Aktif' : 'Non-aktif')
+                                ->state(fn ($record) => $record->is_active ? __('Active') : __('Inactive'))
                                 ->color(fn ($record) => $record->is_active ? 'success' : 'danger'),
                         ]),
                     ]),
-                Section::make('Deskripsi')
+                Section::make(__('Description'))
                     ->components([
                         TextEntry::make('description')->html()->label(''),
                     ]),
-                Section::make('Foto Fasilitas')
+                Section::make(__('Facility Photos'))
                     ->components([
                         RepeatableEntry::make('photos')
                             ->label('')
                             ->schema([
-                                ImageEntry::make('path')->label('Foto'),
-                                TextEntry::make('description')->label('Deskripsi'),
+                                ImageEntry::make('path')->label(__('Photo')),
+                                TextEntry::make('description')->label(__('Description')),
                             ])
                             ->columns(2)
                     ]),

@@ -16,26 +16,33 @@ class EmployeesTable
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label(__('Name'))
                     ->searchable(),
                 TextColumn::make('email')
-                    ->label('Email address')
+                    ->label(__('Email Address'))
                     ->searchable(),
                 TextColumn::make('email_verified_at')
+                    ->label(__('Email Verified At'))
                     ->dateTime()
                     ->sortable(),
                 TextColumn::make('role')
+                    ->label(__('Role'))
                     ->badge()
                     ->searchable(),
                 TextColumn::make('phone')
+                    ->label(__('Phone'))
                     ->searchable(),
                 IconColumn::make('is_active')
+                    ->label(__('Active'))
                     ->boolean(),
 
                 TextColumn::make('created_at')
+                    ->label(__('Created At'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label(__('Updated At'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

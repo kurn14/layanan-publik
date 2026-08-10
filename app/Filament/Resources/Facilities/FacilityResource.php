@@ -23,7 +23,20 @@ class FacilityResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-building-office-2';
 
-    protected static \UnitEnum|string|null $navigationGroup = 'Layanan Sewa';
+    public static function getModelLabel(): string
+    {
+        return __('Facility');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Facilities');
+    }
+
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Rental Services');
+    }
 
     protected static ?string $recordTitleAttribute = 'name';
 

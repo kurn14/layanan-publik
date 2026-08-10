@@ -20,12 +20,12 @@ class TrainingForm
     {
         return $schema
             ->components([
-                Section::make('Informasi Utama Pelatihan')
-                    ->description('Detail nama, klasifikasi jenis pelatihan, dan deskripsi materi.')
+                Section::make(__('Main Training Information'))
+                    ->description(__('Details of name, training type classification, and material description.'))
                     ->components([
                         TextInput::make('name')
-                            ->label('Nama Pelatihan')
-                            ->placeholder('Contoh: Pelatihan Audit Investigatif & PKKN')
+                            ->label(__('Training Name'))
+                            ->placeholder(__('Example: Investigative Audit & PKKN Training'))
                             ->required()
                             ->maxLength(255)
                             ->columnSpanFull(),
@@ -33,13 +33,13 @@ class TrainingForm
                         Grid::make(2)
                             ->components([
                                 Select::make('type')
-                                    ->label('Jenis Pelatihan')
+                                    ->label(__('Training Type'))
                                     ->options(collect(TrainingType::cases())->mapWithKeys(fn ($case) => [$case->value => $case->label()]))
                                     ->required()
                                     ->native(false),
 
                                 Select::make('status')
-                                    ->label('Status Pelatihan')
+                                    ->label(__('Training Status'))
                                     ->options(collect(TrainingStatus::cases())->mapWithKeys(fn ($case) => [$case->value => $case->label()]))
                                     ->default(TrainingStatus::DRAFT->value)
                                     ->required()
@@ -47,80 +47,80 @@ class TrainingForm
                             ]),
 
                         Textarea::make('description')
-                            ->label('Deskripsi Pelatihan')
-                            ->placeholder('Tuliskan ringkasan materi dan tujuan pembelajaran...')
+                            ->label(__('Training Description'))
+                            ->placeholder(__('Write a summary of the material and learning objectives...'))
                             ->rows(3)
                             ->columnSpanFull(),
 
                         Textarea::make('requirements')
-                            ->label('Persyaratan Peserta')
-                            ->placeholder('Contoh: Jenjang pendidikan minimal, latar belakang tugas, dsb.')
+                            ->label(__('Participant Requirements'))
+                            ->placeholder(__('Example: Minimum education level, task background, etc.'))
                             ->rows(3)
                             ->columnSpanFull(),
                     ]),
 
-                Section::make('Jadwal & Lokasi Pelaksanaan')
-                    ->description('Waktu pelaksanaan, durasi hari, dan tempat berlangsungnya pelatihan.')
+                Section::make(__('Schedule & Location'))
+                    ->description(__('Execution time, duration in days, and training venue.'))
                     ->components([
                         Grid::make(3)
                             ->components([
                                 DatePicker::make('start_date')
-                                    ->label('Tanggal Mulai')
+                                    ->label(__('Start Date'))
                                     ->required()
                                     ->native(false),
 
                                 DatePicker::make('end_date')
-                                    ->label('Tanggal Selesai')
+                                    ->label(__('End Date'))
                                     ->required()
                                     ->afterOrEqual('start_date')
                                     ->native(false),
 
                                 TextInput::make('duration_days')
-                                    ->label('Durasi (Hari)')
+                                    ->label(__('Duration (Days)'))
                                     ->numeric()
                                     ->minValue(1)
-                                    ->suffix('Hari')
+                                    ->suffix(__('Days'))
                                     ->required(),
                             ]),
 
                         TextInput::make('location')
-                            ->label('Lokasi / Tempat Pelaksanaan')
-                            ->placeholder('Contoh: Gedung Diklat BPKP DIY — Ruang Kelas Malioboro')
+                            ->label(__('Location / Venue'))
+                            ->placeholder(__('Example: BPKP DIY Training Building — Malioboro Classroom'))
                             ->required()
                             ->maxLength(255)
                             ->columnSpanFull(),
                     ]),
 
-                Section::make('Kuota & Konfigurasi')
-                    ->description('Batas kuota pendaftar dan data tambahan pelatihan.')
+                Section::make(__('Quota & Configuration'))
+                    ->description(__('Registration quota limits and additional training data.'))
                     ->components([
                         Grid::make(3)
                             ->components([
                                 TextInput::make('max_quota')
-                                    ->label('Kuota Maksimal')
+                                    ->label(__('Maximum Quota'))
                                     ->numeric()
                                     ->default(50)
                                     ->minValue(1)
                                     ->required(),
 
                                 TextInput::make('filled_quota')
-                                    ->label('Kuota Terisi')
+                                    ->label(__('Filled Quota'))
                                     ->numeric()
                                     ->default(0)
                                     ->minValue(0)
                                     ->required(),
 
                                 Toggle::make('is_active')
-                                    ->label('Status Aktif')
+                                    ->label(__('Active Status'))
                                     ->default(true)
                                     ->inline(false)
-                                    ->helperText('Tampilkan pelatihan di portal publik.'),
+                                    ->helperText(__('Show training on public portal.')),
                             ]),
 
                         KeyValue::make('metadata')
-                            ->label('Data Tambahan (Metadata)')
-                            ->keyLabel('Atribut')
-                            ->valueLabel('Nilai')
+                            ->label(__('Additional Data (Metadata)'))
+                            ->keyLabel(__('Attribute'))
+                            ->valueLabel(__('Value'))
                             ->reorderable()
                             ->columnSpanFull(),
                     ]),

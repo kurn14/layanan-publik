@@ -20,7 +20,20 @@ class EmployeeResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-users';
 
-    protected static \UnitEnum|string|null $navigationGroup = 'Data Master';
+    public static function getModelLabel(): string
+    {
+        return __('Employee');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Employees');
+    }
+
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Master Data');
+    }
 
     protected static ?string $recordTitleAttribute = 'name';
 
