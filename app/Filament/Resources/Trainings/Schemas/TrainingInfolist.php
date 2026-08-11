@@ -5,7 +5,7 @@ namespace App\Filament\Resources\Trainings\Schemas;
 use App\Enums\TrainingStatus;
 use App\Enums\TrainingType;
 use Filament\Infolists\Components\IconEntry;
-use Filament\Infolists\Components\KeyValueEntry;
+use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
@@ -103,8 +103,8 @@ class TrainingInfolist
                                     ->boolean(),
                             ]),
 
-                        KeyValueEntry::make('metadata')
-                            ->label(__('Additional Data (Metadata)'))
+                        ImageEntry::make('image')
+                            ->label(__('Poster / Image'))
                             ->columnSpanFull(),
 
                         Grid::make(2)

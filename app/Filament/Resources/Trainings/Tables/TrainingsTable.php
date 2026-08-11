@@ -15,6 +15,7 @@ use Filament\Actions\RestoreAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TernaryFilter;
@@ -27,6 +28,10 @@ class TrainingsTable
     {
         return $table
             ->columns([
+                ImageColumn::make('image')
+                    ->label(__('Image'))
+                    ->circular(),
+
                 TextColumn::make('name')
                     ->label(__('Training Name'))
                     ->searchable()

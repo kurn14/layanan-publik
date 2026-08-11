@@ -253,7 +253,7 @@ Satu tabel pelatihan lengkap dengan jadwal dan kuota:
 | `filled_quota` | `integer`, default `0` | Filled counter |
 | `status` | `string`, default `'draft'` | `draft`, `open`, `full`, `ongoing`, `completed`, `cancelled` |
 | `is_active` | `boolean`, default `true` | — |
-| `metadata` | `jsonb`, nullable | — |
+| `image` | `string`, nullable | Training poster/image |
 | `timestamps` | — | — |
 | `softDeletes` | — | — |
 

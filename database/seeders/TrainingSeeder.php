@@ -25,10 +25,7 @@ class TrainingSeeder extends Seeder
                 'filled_quota' => 3,
                 'status' => TrainingStatus::OPEN,
                 'is_active' => true,
-                'metadata' => [
-                    'curriculum_version' => '2026.1',
-                    'lead_instructor' => 'Dr. H. Sukamto, Ak., M.Si., CFrA.',
-                ],
+                'image' => null,
             ],
             [
                 'name' => ['id' => 'Pelatihan Penilaian Maturitas Penyelenggaraan SPIP Terintegrasi', 'en' => 'Integrated SPIP Maturity Assessment Training'],
@@ -43,10 +40,7 @@ class TrainingSeeder extends Seeder
                 'filled_quota' => 40,
                 'status' => TrainingStatus::FULL,
                 'is_active' => true,
-                'metadata' => [
-                    'curriculum_version' => '2026.2',
-                    'lead_instructor' => 'Agung Wibowo, S.E., M.Acc., Ak.',
-                ],
+                'image' => null,
             ],
             [
                 'name' => ['id' => 'Pelatihan Manajemen Risiko Sektor Publik & Good Governance (GRC)', 'en' => 'Public Sector Risk Management & Good Governance Training'],
@@ -61,10 +55,7 @@ class TrainingSeeder extends Seeder
                 'filled_quota' => 12,
                 'status' => TrainingStatus::OPEN,
                 'is_active' => true,
-                'metadata' => [
-                    'curriculum_version' => '2025.3',
-                    'lead_instructor' => 'Dra. Endang Purwanti, M.M., CA.',
-                ],
+                'image' => null,
             ],
             [
                 'name' => ['id' => 'Pelatihan Teknik Audit Berbantuan Komputer (TABK) dengan Data Analytics', 'en' => 'Computer-Assisted Audit Techniques (CAATs) with Data Analytics Training'],
@@ -79,10 +70,7 @@ class TrainingSeeder extends Seeder
                 'filled_quota' => 25,
                 'status' => TrainingStatus::COMPLETED,
                 'is_active' => true,
-                'metadata' => [
-                    'curriculum_version' => '2026.1',
-                    'software' => 'ACL Analytics v16 / Python Pandas',
-                ],
+                'image' => null,
             ],
             [
                 'name' => ['id' => 'Pelatihan Pengawasan Pengadaan Barang & Jasa (PBJ) Pemerintah', 'en' => 'Government Procurement Supervision Training'],
@@ -97,9 +85,7 @@ class TrainingSeeder extends Seeder
                 'filled_quota' => 0,
                 'status' => TrainingStatus::DRAFT,
                 'is_active' => true,
-                'metadata' => [
-                    'curriculum_version' => '2026.2',
-                ],
+                'image' => null,
             ],
         ];
 

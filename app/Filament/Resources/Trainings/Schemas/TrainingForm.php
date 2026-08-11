@@ -5,7 +5,7 @@ namespace App\Filament\Resources\Trainings\Schemas;
 use App\Enums\TrainingStatus;
 use App\Enums\TrainingType;
 use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\KeyValue;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -117,11 +117,10 @@ class TrainingForm
                                     ->helperText(__('Show training on public portal.')),
                             ]),
 
-                        KeyValue::make('metadata')
-                            ->label(__('Additional Data (Metadata)'))
-                            ->keyLabel(__('Attribute'))
-                            ->valueLabel(__('Value'))
-                            ->reorderable()
+                        FileUpload::make('image')
+                            ->label(__('Poster / Image'))
+                            ->image()
+                            ->directory('trainings')
                             ->columnSpanFull(),
                     ]),
             ]);

@@ -32,7 +32,7 @@ class Training extends Model
         'filled_quota',
         'status',
         'is_active',
-        'metadata',
+        'image',
     ];
 
     protected function casts(): array
@@ -46,7 +46,6 @@ class Training extends Model
             'filled_quota' => 'integer',
             'status' => TrainingStatus::class,
             'is_active' => 'boolean',
-            'metadata' => 'array',
         ];
     }
 

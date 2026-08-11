@@ -6,6 +6,7 @@ use App\Filament\Resources\Facilities\FacilityResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 use LaraZeus\SpatieTranslatable\Resources\Pages\ListRecords\Concerns\Translatable;
+use LaraZeus\SpatieTranslatable\Actions\LocaleSwitcher;
 
 class ListFacilities extends ListRecords
 {
@@ -15,6 +16,7 @@ class ListFacilities extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
+            LocaleSwitcher::make(),
             CreateAction::make(),
         ];
     }
