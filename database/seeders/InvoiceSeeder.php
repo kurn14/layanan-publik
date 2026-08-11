@@ -16,7 +16,7 @@ class InvoiceSeeder extends Seeder
         $reg2 = Registration::where('registration_code', 'REG-202608-0002')->first();
         $reg5 = Registration::where('registration_code', 'REG-202607-0005')->first();
 
-        $booking1 = FacilityBooking::where('event_name', 'like', '%Rapat Koordinasi Tata Kelola Keuangan%')->first();
+        $booking1 = FacilityBooking::where('purpose', 'like', '%Rapat Koordinasi Tata Kelola Keuangan%')->first();
 
         $invoices = [
             [

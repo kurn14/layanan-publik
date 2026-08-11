@@ -6,6 +6,8 @@ use App\Enums\TrainingStatus;
 use App\Enums\TrainingType;
 use App\Models\Training;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class TrainingSeeder extends Seeder
 {
@@ -92,6 +94,16 @@ class TrainingSeeder extends Seeder
         Training::query()->delete();
 
         foreach ($trainings as $training) {
+            try {
+                $imageContents = file_get_contents('https://picsum.photos/800/600');
+                $filename = 'trainings/' . Str::random(40) . '.jpg';
+                Storage::disk('public')->put($filename, $imageContents);
+                $training['image'] = $filename;
+            } catch (\Exception $e) {
+                // Silently fallback if unable to fetch image
+                $training['image'] = null;
+            }
+
             Training::create($training);
         }
     }

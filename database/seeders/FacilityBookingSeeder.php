@@ -27,7 +27,7 @@ class FacilityBookingSeeder extends Seeder
             [
                 'facility_id' => $fAuditorium?->id,
                 'customer_id' => $cDewi?->id,
-                'event_name' => 'Rapat Koordinasi Tata Kelola Keuangan Pemerintah Daerah Se-DIY TA 2026',
+                'purpose' => 'Rapat Koordinasi Tata Kelola Keuangan Pemerintah Daerah Se-DIY TA 2026',
                 'start_date' => '2026-09-21',
                 'end_date' => '2026-09-22',
                 'guest_count' => 120,
@@ -40,7 +40,7 @@ class FacilityBookingSeeder extends Seeder
             [
                 'facility_id' => $fPrambanan?->id,
                 'customer_id' => $cHendro?->id,
-                'event_name' => 'Workshop Audit Mutu Klinis & Penguatan SPI Rumah Sakit',
+                'purpose' => 'Workshop Audit Mutu Klinis & Penguatan SPI Rumah Sakit',
                 'start_date' => '2026-10-12',
                 'end_date' => '2026-10-14',
                 'guest_count' => 40,
@@ -53,7 +53,7 @@ class FacilityBookingSeeder extends Seeder
             [
                 'facility_id' => $fLab?->id,
                 'customer_id' => $cBudi?->id,
-                'event_name' => 'In-House Training Analisis Data APIP Inspektorat Sleman',
+                'purpose' => 'Seminar Nasional Fraud Auditing bagi Auditor Internal Korporasi',
                 'start_date' => '2026-11-04',
                 'end_date' => '2026-11-05',
                 'guest_count' => 25,
