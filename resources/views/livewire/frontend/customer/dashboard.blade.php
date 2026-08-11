@@ -58,7 +58,7 @@
                                         <div class="flex min-w-0 gap-x-4">
                                             <div class="min-w-0 flex-auto">
                                                 <p class="text-sm font-semibold leading-6 text-slate-900">{{ $reg->training->name }}</p>
-                                                <p class="mt-1 truncate text-xs leading-5 text-slate-500">Didaftarkan: {{ $reg->registered_at->format('d M Y H:i') }}</p>
+                                                <p class="mt-1 truncate text-xs leading-5 text-slate-500">Didaftarkan: {{ $reg->created_at->format('d M Y H:i') }}</p>
                                             </div>
                                         </div>
                                         <div class="shrink-0 flex flex-col items-end">

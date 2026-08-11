@@ -40,6 +40,21 @@
                 <form wire:submit="submit" class="space-y-8">
                     
                     <!-- Customer Data Section -->
+                    @if(auth()->guard('customer')->check())
+                        <div class="rounded-xl bg-slate-50 p-6 border border-slate-200 flex items-start gap-4 mb-8">
+                            <div class="h-12 w-12 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 text-xl font-bold shrink-0">
+                                {{ strtoupper(substr(auth()->guard('customer')->user()->name, 0, 1)) }}
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-medium text-slate-500 mb-1">Pemesanan dilakukan sebagai:</h3>
+                                <p class="text-lg font-bold text-slate-900">{{ auth()->guard('customer')->user()->name }}</p>
+                                <p class="text-sm text-slate-600 mt-1">{{ auth()->guard('customer')->user()->email }} &bull; {{ auth()->guard('customer')->user()->phone }}</p>
+                                @if(auth()->guard('customer')->user()->institution_name)
+                                    <p class="text-sm text-slate-600">{{ auth()->guard('customer')->user()->institution_name }}</p>
+                                @endif
+                            </div>
+                        </div>
+                    @else
                     <div>
                         <h2 class="text-base font-semibold leading-7 text-slate-900 mb-4">Informasi Pemesan</h2>
                         <div class="grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2">
@@ -47,7 +62,7 @@
                             <div class="sm:col-span-2">
                                 <label for="name" class="block text-sm font-medium leading-6 text-slate-900">Nama Lengkap</label>
                                 <div class="mt-2">
-                                    <input type="text" wire:model="name" id="name" class="block w-full rounded-md border-0 py-1.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6" @if(auth()->guard('customer')->check()) disabled @endif>
+                                    <input type="text" wire:model="name" id="name" class="block w-full rounded-md border-0 py-1.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6">
                                 </div>
                                 @error('name') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                             </div>
@@ -56,7 +71,7 @@
                             <div class="sm:col-span-1">
                                 <label for="email" class="block text-sm font-medium leading-6 text-slate-900">Email</label>
                                 <div class="mt-2">
-                                    <input type="email" wire:model="email" id="email" class="block w-full rounded-md border-0 py-1.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6" @if(auth()->guard('customer')->check()) disabled @endif>
+                                    <input type="email" wire:model="email" id="email" class="block w-full rounded-md border-0 py-1.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6">
                                 </div>
                                 @error('email') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                             </div>
@@ -65,7 +80,7 @@
                             <div class="sm:col-span-1">
                                 <label for="phone" class="block text-sm font-medium leading-6 text-slate-900">No. WhatsApp/Telepon</label>
                                 <div class="mt-2">
-                                    <input type="text" wire:model="phone" id="phone" class="block w-full rounded-md border-0 py-1.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6" @if(auth()->guard('customer')->check()) disabled @endif>
+                                    <input type="text" wire:model="phone" id="phone" class="block w-full rounded-md border-0 py-1.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6">
                                 </div>
                                 @error('phone') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                             </div>
@@ -74,7 +89,7 @@
                             <div class="sm:col-span-1">
                                 <label for="nik" class="block text-sm font-medium leading-6 text-slate-900">NIK</label>
                                 <div class="mt-2">
-                                    <input type="text" wire:model="nik" id="nik" class="block w-full rounded-md border-0 py-1.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6" @if(auth()->guard('customer')->check()) disabled @endif>
+                                    <input type="text" wire:model="nik" id="nik" class="block w-full rounded-md border-0 py-1.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6">
                                 </div>
                                 @error('nik') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                             </div>
@@ -83,12 +98,11 @@
                             <div class="sm:col-span-1">
                                 <label for="institution" class="block text-sm font-medium leading-6 text-slate-900">Asal Instansi</label>
                                 <div class="mt-2">
-                                    <input type="text" wire:model="institution" id="institution" class="block w-full rounded-md border-0 py-1.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6" @if(auth()->guard('customer')->check()) disabled @endif>
+                                    <input type="text" wire:model="institution" id="institution" class="block w-full rounded-md border-0 py-1.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6">
                                 </div>
                                 @error('institution') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                             </div>
 
-                            @if(!auth()->guard('customer')->check())
                             <!-- Password Section -->
                             <div class="sm:col-span-2 pt-4 border-t border-slate-100 mt-2">
                                 <p class="text-sm text-slate-500 mb-4">Buat password untuk akun Anda agar dapat mengelola pemesanan di Dashboard.</p>
@@ -108,9 +122,9 @@
                                     <input type="password" wire:model="password_confirmation" id="password_confirmation" class="block w-full rounded-md border-0 py-1.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6">
                                 </div>
                             </div>
-                            @endif
                         </div>
                     </div>
+                    @endif
 
                     <!-- Booking Data Section -->
                     <div class="pt-6 border-t border-slate-100">

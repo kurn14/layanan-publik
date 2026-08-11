@@ -97,8 +97,24 @@ class TrainingRegistration extends Component
                     Auth::guard('customer')->login($customer);
                 }
 
+                // Generate registration code
+                $prefix = 'REG-' . date('Ym') . '-';
+                $lastRegistration = Registration::where('registration_code', 'like', $prefix . '%')
+                    ->orderBy('registration_code', 'desc')
+                    ->lockForUpdate()
+                    ->first();
+
+                if ($lastRegistration) {
+                    $lastSequence = intval(substr($lastRegistration->registration_code, -4));
+                    $newSequence = str_pad($lastSequence + 1, 4, '0', STR_PAD_LEFT);
+                } else {
+                    $newSequence = '0001';
+                }
+                $registrationCode = $prefix . $newSequence;
+
                 // Create registration
                 $registration = Registration::create([
+                    'registration_code' => $registrationCode,
                     'training_id' => $training->id,
                     'customer_id' => $customer->id,
                     'participant_name' => $this->name,
@@ -107,7 +123,6 @@ class TrainingRegistration extends Component
                     'phone' => $this->phone,
                     'institution' => $this->institution,
                     'status' => 'pending',
-                    'registered_at' => now(),
                 ]);
 
                 // Increment quota
