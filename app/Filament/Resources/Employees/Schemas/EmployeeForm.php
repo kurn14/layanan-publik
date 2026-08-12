@@ -28,10 +28,11 @@ class EmployeeForm
                     ->label(__('Password'))
                     ->password()
                     ->required(),
-                Select::make('role')
+                Select::make('roles')
                     ->label(__('Role'))
-                    ->options(EmployeeRole::class)
-                    ->default('operator')
+                    ->relationship('roles', 'name')
+                    ->multiple()
+                    ->preload()
                     ->required(),
                 TextInput::make('phone')
                     ->label(__('Phone'))

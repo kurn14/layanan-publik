@@ -25,9 +25,10 @@ class EmployeesTable
                     ->label(__('Email Verified At'))
                     ->dateTime()
                     ->sortable(),
-                TextColumn::make('role')
+                TextColumn::make('roles.name')
                     ->label(__('Role'))
                     ->badge()
+                    ->separator(',')
                     ->searchable(),
                 TextColumn::make('phone')
                     ->label(__('Phone'))

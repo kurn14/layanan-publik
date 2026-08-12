@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Enums\EmployeeRole;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -21,7 +20,6 @@ class Employee extends Authenticatable implements FilamentUser
         'name',
         'email',
         'password',
-        'role',
         'phone',
         'is_active',
 
@@ -38,7 +36,6 @@ class Employee extends Authenticatable implements FilamentUser
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
-            'role' => EmployeeRole::class,
             'is_active' => 'boolean',
 
         ];
@@ -51,17 +48,17 @@ class Employee extends Authenticatable implements FilamentUser
 
     public function isAdmin(): bool
     {
-        return $this->role === EmployeeRole::ADMIN;
+        return $this->hasRole('admin');
     }
 
     public function isOperator(): bool
     {
-        return $this->role === EmployeeRole::OPERATOR;
+        return $this->hasRole('operator');
     }
 
     public function isLeader(): bool
     {
-        return $this->role === EmployeeRole::LEADER;
+        return $this->hasRole('leader');
     }
 
     public function verifiedRegistrations(): HasMany
