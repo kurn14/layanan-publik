@@ -210,6 +210,52 @@ class RegistrationResource extends Resource
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
+                    \Filament\Actions\BulkAction::make('export_excel')
+                        ->label('Export to Excel')
+                        ->icon('heroicon-o-document-arrow-down')
+                        ->color('success')
+                        ->action(function (\Illuminate\Database\Eloquent\Collection $records) {
+                            $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+                            $sheet = $spreadsheet->getActiveSheet();
+
+                            // Set Headers
+                            $sheet->setCellValue('A1', 'Kode Registrasi');
+                            $sheet->setCellValue('B1', 'Peserta');
+                            $sheet->setCellValue('C1', 'Pelatihan');
+                            $sheet->setCellValue('D1', 'Status');
+                            $sheet->setCellValue('E1', 'Kelulusan');
+                            $sheet->setCellValue('F1', 'Tanggal Daftar');
+
+                            // Set Header Style
+                            $sheet->getStyle('A1:F1')->getFont()->setBold(true);
+
+                            // Populate Data
+                            $row = 2;
+                            foreach ($records as $record) {
+                                $sheet->setCellValue('A' . $row, $record->registration_code);
+                                $sheet->setCellValue('B' . $row, $record->customer->name ?? '-');
+                                $sheet->setCellValue('C' . $row, $record->training->name ?? '-');
+                                $sheet->setCellValue('D' . $row, $record->status->label());
+                                $sheet->setCellValue('E' . $row, $record->graduation_status->label());
+                                $sheet->setCellValue('F' . $row, $record->created_at->format('Y-m-d H:i'));
+                                $row++;
+                            }
+
+                            // Auto-size columns
+                            foreach (range('A', 'F') as $col) {
+                                $sheet->getColumnDimension($col)->setAutoSize(true);
+                            }
+
+                            $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+                            $fileName = 'registrations_export_' . date('Y-m-d_His') . '.xlsx';
+
+                            return response()->streamDownload(function () use ($writer) {
+                                $writer->save('php://output');
+                            }, $fileName, [
+                                'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                            ]);
+                        })
+                        ->deselectRecordsAfterCompletion(),
                 ]),
             ]);
     }
