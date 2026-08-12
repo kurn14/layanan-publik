@@ -94,7 +94,7 @@ class TrainingForm
                 Section::make(__('Quota & Configuration'))
                     ->description(__('Registration quota limits and additional training data.'))
                     ->components([
-                        Grid::make(3)
+                        Grid::make(4)
                             ->components([
                                 TextInput::make('max_quota')
                                     ->label(__('Maximum Quota'))
@@ -108,6 +108,13 @@ class TrainingForm
                                     ->numeric()
                                     ->default(0)
                                     ->minValue(0)
+                                    ->required(),
+
+                                TextInput::make('price')
+                                    ->label(__('Registration Fee'))
+                                    ->numeric()
+                                    ->default(0)
+                                    ->prefix('Rp')
                                     ->required(),
 
                                 Toggle::make('is_active')

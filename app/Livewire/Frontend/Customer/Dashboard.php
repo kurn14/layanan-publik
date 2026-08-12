@@ -16,7 +16,10 @@ class Dashboard extends Component
         // Eager load relations for performance
         $customer->load([
             'registrations.training', 
-            'facilityBookings.facility'
+            'registrations.invoice',
+            'registrations.certificate',
+            'facilityBookings.facility',
+            'facilityBookings.invoice',
         ]);
 
         return view('livewire.frontend.customer.dashboard', [

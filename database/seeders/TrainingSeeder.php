@@ -28,6 +28,7 @@ class TrainingSeeder extends Seeder
                 'status' => TrainingStatus::OPEN,
                 'is_active' => true,
                 'image' => null,
+                'price' => 3500000,
             ],
             [
                 'name' => ['id' => 'Pelatihan Penilaian Maturitas Penyelenggaraan SPIP Terintegrasi', 'en' => 'Integrated SPIP Maturity Assessment Training'],
@@ -43,6 +44,7 @@ class TrainingSeeder extends Seeder
                 'status' => TrainingStatus::FULL,
                 'is_active' => true,
                 'image' => null,
+                'price' => 2750000,
             ],
             [
                 'name' => ['id' => 'Pelatihan Manajemen Risiko Sektor Publik & Good Governance (GRC)', 'en' => 'Public Sector Risk Management & Good Governance Training'],
@@ -58,6 +60,7 @@ class TrainingSeeder extends Seeder
                 'status' => TrainingStatus::OPEN,
                 'is_active' => true,
                 'image' => null,
+                'price' => 4000000,
             ],
             [
                 'name' => ['id' => 'Pelatihan Teknik Audit Berbantuan Komputer (TABK) dengan Data Analytics', 'en' => 'Computer-Assisted Audit Techniques (CAATs) with Data Analytics Training'],
@@ -73,6 +76,7 @@ class TrainingSeeder extends Seeder
                 'status' => TrainingStatus::COMPLETED,
                 'is_active' => true,
                 'image' => null,
+                'price' => 5000000,
             ],
             [
                 'name' => ['id' => 'Pelatihan Pengawasan Pengadaan Barang & Jasa (PBJ) Pemerintah', 'en' => 'Government Procurement Supervision Training'],
@@ -88,6 +92,7 @@ class TrainingSeeder extends Seeder
                 'status' => TrainingStatus::DRAFT,
                 'is_active' => true,
                 'image' => null,
+                'price' => 3000000,
             ],
         ];
 

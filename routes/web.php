@@ -27,9 +27,11 @@ Route::middleware('guest:customer')->group(function () {
     Route::get('/login', Login::class)->name('login');
     Route::get('/register', Register::class)->name('register');
 });
+use App\Livewire\Frontend\Customer\UploadPayment;
 
 Route::middleware('auth:customer')->group(function () {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
+    Route::get('/dashboard/invoice/{invoice}/bayar', UploadPayment::class)->name('payment.upload');
 });
 
 Route::post('/logout', function () {

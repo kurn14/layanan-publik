@@ -33,6 +33,7 @@ class Training extends Model
         'status',
         'is_active',
         'image',
+        'price',
     ];
 
     protected function casts(): array
@@ -46,6 +47,7 @@ class Training extends Model
             'filled_quota' => 'integer',
             'status' => TrainingStatus::class,
             'is_active' => 'boolean',
+            'price' => 'decimal:2',
         ];
     }
 

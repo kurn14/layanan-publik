@@ -74,7 +74,7 @@ class TrainingResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            \App\Filament\Resources\Trainings\RelationManagers\RegistrationsRelationManager::class,
         ];
     }
 
