@@ -26,6 +26,11 @@ class BookingsRelationManager extends RelationManager
 {
     protected static string $relationship = 'bookings';
 
+    public function isReadOnly(): bool
+    {
+        return false;
+    }
+
     public function form(Schema $schema): Schema
     {
         return $schema

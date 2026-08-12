@@ -23,8 +23,8 @@ use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
-use Filament\Tables\Actions\BulkActionGroup;
-use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
@@ -174,9 +174,9 @@ class InvoiceResource extends Resource
                     ->label(__('Status')),
             ])
             ->recordActions([
-                \Filament\Tables\Actions\ViewAction::make(),
-                \Filament\Tables\Actions\EditAction::make(),
-                \Filament\Tables\Actions\Action::make('generate_pdf')
+                \Filament\Actions\ViewAction::make(),
+                \Filament\Actions\EditAction::make(),
+                \Filament\Actions\Action::make('generate_pdf')
                     ->label(__('Generate PDF'))
                     ->icon('heroicon-o-document-arrow-down')
                     ->color('info')
@@ -184,7 +184,7 @@ class InvoiceResource extends Resource
                         $path = InvoiceService::generatePdf($record);
                         Notification::make()->title('PDF invoice berhasil digenerate.')->success()->send();
                     }),
-                \Filament\Tables\Actions\Action::make('download_pdf')
+                \Filament\Actions\Action::make('download_pdf')
                     ->label(__('Download'))
                     ->icon('heroicon-o-arrow-down-tray')
                     ->color('success')
@@ -192,7 +192,7 @@ class InvoiceResource extends Resource
                         $path = InvoiceService::generatePdf($record);
                         return response()->download(storage_path('app/public/' . $path));
                     }),
-                \Filament\Tables\Actions\Action::make('mark_sent')
+                \Filament\Actions\Action::make('mark_sent')
                     ->label(__('Mark Sent'))
                     ->icon('heroicon-o-paper-airplane')
                     ->color('warning')

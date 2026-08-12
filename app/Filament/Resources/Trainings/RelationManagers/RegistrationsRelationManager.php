@@ -81,7 +81,7 @@ class RegistrationsRelationManager extends RelationManager
             ])
             ->recordActions([
                 EditAction::make(),
-                \Filament\Tables\Actions\Action::make('confirm')
+                \Filament\Actions\Action::make('confirm')
                     ->label('Konfirmasi')
                     ->icon('heroicon-o-check-circle')
                     ->color('success')
@@ -96,7 +96,7 @@ class RegistrationsRelationManager extends RelationManager
                         InvoiceService::createForRegistration($record);
                         Notification::make()->title('Dikonfirmasi & invoice dibuat.')->success()->send();
                     }),
-                \Filament\Tables\Actions\Action::make('set_passed')
+                \Filament\Actions\Action::make('set_passed')
                     ->label('Lulus')
                     ->icon('heroicon-o-academic-cap')
                     ->color('success')

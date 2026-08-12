@@ -22,6 +22,11 @@ class CertificateRelationManager extends RelationManager
 
     protected static ?string $title = 'Sertifikat';
 
+    public function isReadOnly(): bool
+    {
+        return false;
+    }
+
     public function form(Schema $schema): Schema
     {
         return $schema->components([
@@ -61,7 +66,7 @@ class CertificateRelationManager extends RelationManager
                     ->formatStateUsing(fn ($state) => $state ? '📄 Tersedia' : '—'),
             ])
             ->headerActions([
-                \Filament\Tables\Actions\Action::make('generate_certificate')
+                \Filament\Actions\Action::make('generate_certificate')
                     ->label('Generate Sertifikat')
                     ->icon('heroicon-o-document-arrow-down')
                     ->color('success')
@@ -78,13 +83,13 @@ class CertificateRelationManager extends RelationManager
             ])
             ->recordActions([
                 EditAction::make(),
-                \Filament\Tables\Actions\Action::make('download_pdf')
+                \Filament\Actions\Action::make('download_pdf')
                     ->label('Download PDF')
                     ->icon('heroicon-o-arrow-down-tray')
                     ->color('info')
                     ->visible(fn ($record) => $record->file_path)
                     ->url(fn ($record) => asset('storage/' . $record->file_path), shouldOpenInNewTab: true),
-                \Filament\Tables\Actions\Action::make('regenerate')
+                \Filament\Actions\Action::make('regenerate')
                     ->label('Regenerate PDF')
                     ->icon('heroicon-o-arrow-path')
                     ->color('warning')

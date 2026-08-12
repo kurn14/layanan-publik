@@ -25,8 +25,8 @@ use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
-use Filament\Tables\Actions\BulkActionGroup;
-use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
@@ -157,9 +157,9 @@ class RegistrationResource extends Resource
                     ->label(__('Graduation')),
             ])
             ->recordActions([
-                \Filament\Tables\Actions\ViewAction::make(),
-                \Filament\Tables\Actions\EditAction::make(),
-                \Filament\Tables\Actions\Action::make('confirm')
+                \Filament\Actions\ViewAction::make(),
+                \Filament\Actions\EditAction::make(),
+                \Filament\Actions\Action::make('confirm')
                     ->label(__('Confirm'))
                     ->icon('heroicon-o-check-circle')
                     ->color('success')
@@ -175,7 +175,7 @@ class RegistrationResource extends Resource
                         InvoiceService::createForRegistration($record);
                         Notification::make()->title('Registrasi dikonfirmasi & invoice dibuat.')->success()->send();
                     }),
-                \Filament\Tables\Actions\Action::make('reject')
+                \Filament\Actions\Action::make('reject')
                     ->label(__('Reject'))
                     ->icon('heroicon-o-x-circle')
                     ->color('danger')
@@ -185,7 +185,7 @@ class RegistrationResource extends Resource
                         $record->update(['status' => RegistrationStatus::REJECTED]);
                         Notification::make()->title('Registrasi ditolak.')->warning()->send();
                     }),
-                \Filament\Tables\Actions\Action::make('set_passed')
+                \Filament\Actions\Action::make('set_passed')
                     ->label(__('Set Passed'))
                     ->icon('heroicon-o-academic-cap')
                     ->color('success')
@@ -196,7 +196,7 @@ class RegistrationResource extends Resource
                         CertificateService::createForRegistration($record);
                         Notification::make()->title('Peserta dinyatakan lulus & sertifikat digenerate.')->success()->send();
                     }),
-                \Filament\Tables\Actions\Action::make('set_failed')
+                \Filament\Actions\Action::make('set_failed')
                     ->label(__('Set Failed'))
                     ->icon('heroicon-o-x-mark')
                     ->color('danger')

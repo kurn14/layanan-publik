@@ -27,6 +27,11 @@ class PaymentsRelationManager extends RelationManager
 
     protected static ?string $title = 'Pembayaran';
 
+    public function isReadOnly(): bool
+    {
+        return false;
+    }
+
     public function form(Schema $schema): Schema
     {
         return $schema->components([
@@ -85,7 +90,7 @@ class PaymentsRelationManager extends RelationManager
             ])
             ->recordActions([
                 EditAction::make(),
-                \Filament\Tables\Actions\Action::make('verify')
+                \Filament\Actions\Action::make('verify')
                     ->label('Verifikasi')
                     ->icon('heroicon-o-check-badge')
                     ->color('success')
@@ -111,7 +116,7 @@ class PaymentsRelationManager extends RelationManager
 
                         Notification::make()->title('Pembayaran terverifikasi.')->success()->send();
                     }),
-                \Filament\Tables\Actions\Action::make('reject')
+                \Filament\Actions\Action::make('reject')
                     ->label('Tolak')
                     ->icon('heroicon-o-x-circle')
                     ->color('danger')

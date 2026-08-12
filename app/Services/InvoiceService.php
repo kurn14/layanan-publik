@@ -58,6 +58,8 @@ class InvoiceService
                 ]
             );
 
+            self::generatePdf($invoice);
+
             return $invoice;
         });
     }
@@ -91,6 +93,8 @@ class InvoiceService
                     'notes' => 'Invoice otomatis — batas pembayaran H-7 sebelum tanggal mulai sewa.',
                 ]
             );
+
+            self::generatePdf($invoice);
 
             return $invoice;
         });

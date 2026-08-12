@@ -99,11 +99,17 @@
                                                     class="inline-flex items-center gap-1 rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 hover:bg-blue-100 transition">
                                                     📄 Invoice
                                                 </a>
-                                                @if($reg->invoice->status === \App\Enums\InvoiceStatus::SENT)
-                                                    <a href="{{ route('payment.upload', $reg->invoice) }}"
-                                                        class="inline-flex items-center gap-1 rounded-md bg-amber-50 px-3 py-1.5 text-xs font-medium text-amber-700 ring-1 ring-inset ring-amber-700/10 hover:bg-amber-100 transition">
-                                                        💳 Bayar
-                                                    </a>
+                                                @if($reg->invoice->status === \App\Enums\InvoiceStatus::SENT && !in_array($reg->status, [\App\Enums\RegistrationStatus::REJECTED, \App\Enums\RegistrationStatus::CANCELLED]))
+                                                    @if(!$reg->invoice->payments()->where('status', \App\Enums\PaymentStatus::PENDING)->exists())
+                                                        <a href="{{ route('payment.upload', $reg->invoice) }}"
+                                                            class="inline-flex items-center gap-1 rounded-md bg-amber-50 px-3 py-1.5 text-xs font-medium text-amber-700 ring-1 ring-inset ring-amber-700/10 hover:bg-amber-100 transition">
+                                                            💳 Bayar
+                                                        </a>
+                                                    @else
+                                                        <span class="inline-flex items-center gap-1 rounded-md bg-slate-50 px-3 py-1.5 text-xs font-medium text-slate-500 ring-1 ring-inset ring-slate-500/10">
+                                                            ⏳ Menunggu Verifikasi
+                                                        </span>
+                                                    @endif
                                                 @endif
                                             @endif
                                             @if($reg->certificate && $reg->certificate->file_path)
@@ -163,11 +169,17 @@
                                                     class="inline-flex items-center gap-1 rounded-md bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 hover:bg-blue-100 transition">
                                                     📄 Invoice
                                                 </a>
-                                                @if($booking->invoice->status === \App\Enums\InvoiceStatus::SENT)
-                                                    <a href="{{ route('payment.upload', $booking->invoice) }}"
-                                                        class="inline-flex items-center gap-1 rounded-md bg-amber-50 px-3 py-1.5 text-xs font-medium text-amber-700 ring-1 ring-inset ring-amber-700/10 hover:bg-amber-100 transition">
-                                                        💳 Bayar
-                                                    </a>
+                                                @if($booking->invoice->status === \App\Enums\InvoiceStatus::SENT && !in_array($booking->status, [\App\Enums\BookingStatus::COMPLETED, \App\Enums\BookingStatus::CANCELLED]))
+                                                    @if(!$booking->invoice->payments()->where('status', \App\Enums\PaymentStatus::PENDING)->exists())
+                                                        <a href="{{ route('payment.upload', $booking->invoice) }}"
+                                                            class="inline-flex items-center gap-1 rounded-md bg-amber-50 px-3 py-1.5 text-xs font-medium text-amber-700 ring-1 ring-inset ring-amber-700/10 hover:bg-amber-100 transition">
+                                                            💳 Bayar
+                                                        </a>
+                                                    @else
+                                                        <span class="inline-flex items-center gap-1 rounded-md bg-slate-50 px-3 py-1.5 text-xs font-medium text-slate-500 ring-1 ring-inset ring-slate-500/10">
+                                                            ⏳ Menunggu Verifikasi
+                                                        </span>
+                                                    @endif
                                                 @endif
                                             @endif
                                         </div>

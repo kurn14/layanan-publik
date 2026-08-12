@@ -25,6 +25,11 @@ class AttendancesRelationManager extends RelationManager
 
     protected static ?string $title = 'Presensi';
 
+    public function isReadOnly(): bool
+    {
+        return false;
+    }
+
     public function form(Schema $schema): Schema
     {
         return $schema->components([
@@ -71,7 +76,7 @@ class AttendancesRelationManager extends RelationManager
             ->defaultSort('date')
             ->headerActions([
                 CreateAction::make(),
-                \Filament\Tables\Actions\Action::make('generate_all')
+                \Filament\Actions\Action::make('generate_all')
                     ->label('Generate Semua Hari')
                     ->icon('heroicon-o-calendar-days')
                     ->color('info')

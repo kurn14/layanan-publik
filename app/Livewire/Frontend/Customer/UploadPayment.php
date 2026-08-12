@@ -40,6 +40,30 @@ class UploadPayment extends Component
         if (!$ownsInvoice) {
             abort(403, 'Anda tidak memiliki akses ke invoice ini.');
         }
+
+        if ($invoice->status !== \App\Enums\InvoiceStatus::SENT) {
+            session()->flash('message', 'Invoice ini sudah dibayar atau tidak valid untuk pembayaran.');
+            $this->redirect(route('dashboard'), navigate: true);
+            return;
+        }
+
+        if ($invoice->payments()->where('status', \App\Enums\PaymentStatus::PENDING)->exists()) {
+            session()->flash('message', 'Anda sudah mengunggah bukti pembayaran. Harap tunggu verifikasi admin.');
+            $this->redirect(route('dashboard'), navigate: true);
+            return;
+        }
+
+        if ($invoice->facilityBooking && in_array($invoice->facilityBooking->status, [\App\Enums\BookingStatus::COMPLETED, \App\Enums\BookingStatus::CANCELLED])) {
+            session()->flash('message', 'Pemesanan ini sudah selesai atau dibatalkan.');
+            $this->redirect(route('dashboard'), navigate: true);
+            return;
+        }
+
+        if ($invoice->registration && in_array($invoice->registration->status, [\App\Enums\RegistrationStatus::REJECTED, \App\Enums\RegistrationStatus::CANCELLED])) {
+            session()->flash('message', 'Pendaftaran ini sudah dibatalkan atau ditolak.');
+            $this->redirect(route('dashboard'), navigate: true);
+            return;
+        }
     }
 
     public function rules()

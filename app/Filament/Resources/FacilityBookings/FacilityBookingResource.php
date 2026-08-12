@@ -21,8 +21,8 @@ use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
-use Filament\Tables\Actions\BulkActionGroup;
-use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
@@ -161,9 +161,9 @@ class FacilityBookingResource extends Resource
                     ->label(__('Status')),
             ])
             ->recordActions([
-                \Filament\Tables\Actions\ViewAction::make(),
-                \Filament\Tables\Actions\EditAction::make(),
-                \Filament\Tables\Actions\Action::make('confirm')
+                \Filament\Actions\ViewAction::make(),
+                \Filament\Actions\EditAction::make(),
+                \Filament\Actions\Action::make('confirm')
                     ->label(__('Confirm'))
                     ->icon('heroicon-o-check-circle')
                     ->color('success')
@@ -174,7 +174,7 @@ class FacilityBookingResource extends Resource
                         InvoiceService::createForBooking($record);
                         Notification::make()->title('Booking dikonfirmasi & invoice dibuat.')->success()->send();
                     }),
-                \Filament\Tables\Actions\Action::make('complete')
+                \Filament\Actions\Action::make('complete')
                     ->label(__('Complete'))
                     ->icon('heroicon-o-flag')
                     ->color('info')
@@ -184,7 +184,7 @@ class FacilityBookingResource extends Resource
                         $record->update(['status' => BookingStatus::COMPLETED]);
                         Notification::make()->title('Booking ditandai selesai.')->success()->send();
                     }),
-                \Filament\Tables\Actions\Action::make('cancel')
+                \Filament\Actions\Action::make('cancel')
                     ->label(__('Cancel'))
                     ->icon('heroicon-o-x-circle')
                     ->color('danger')
